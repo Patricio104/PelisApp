@@ -11,7 +11,7 @@ import androidx.recyclerview.widget.ConcatAdapter
 import com.patricio.pelisapp.R
 import com.patricio.pelisapp.core.Resource
 import com.patricio.pelisapp.data.model.Movie
-import com.patricio.pelisapp.data.remote.MovieDataSource
+import com.patricio.pelisapp.data.remote.RemoteMovieDataSource
 import com.patricio.pelisapp.databinding.FragmentMovieBinding
 import com.patricio.pelisapp.presentation.MovieViewModel
 import com.patricio.pelisapp.presentation.MovieViewModelFactory
@@ -29,7 +29,7 @@ class MovieFragment : Fragment(R.layout.fragment_movie), MovieAdapter.OnMovieCli
     private val viewModel by viewModels<MovieViewModel> {
         MovieViewModelFactory(
             MovieRepositoryImpl(
-                MovieDataSource(RetrofitClient.webService)
+                RemoteMovieDataSource(RetrofitClient.webService)
             )
         )
     }

@@ -1,9 +1,9 @@
 package com.patricio.pelisapp.repository
 
 import com.patricio.pelisapp.data.model.MovieList
-import com.patricio.pelisapp.data.remote.MovieDataSource
+import com.patricio.pelisapp.data.remote.RemoteMovieDataSource
 
-class MovieRepositoryImpl(private val dataSource: MovieDataSource) : MovieRepository {
+class MovieRepositoryImpl(private val dataSource: RemoteMovieDataSource) : MovieRepository {
     override suspend fun getUpcomingMovies(): MovieList = dataSource.getUpcomingMovies()
 
     override suspend fun getTopRatedMovies(): MovieList =dataSource.getTopRatedMovies()
