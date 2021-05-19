@@ -10,6 +10,8 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.ConcatAdapter
 import com.patricio.pelisapp.R
 import com.patricio.pelisapp.core.Resource
+import com.patricio.pelisapp.data.local.AppDatabase
+import com.patricio.pelisapp.data.local.LocalMovieDataSource
 import com.patricio.pelisapp.data.model.Movie
 import com.patricio.pelisapp.data.remote.RemoteMovieDataSource
 import com.patricio.pelisapp.databinding.FragmentMovieBinding
@@ -29,7 +31,8 @@ class MovieFragment : Fragment(R.layout.fragment_movie), MovieAdapter.OnMovieCli
     private val viewModel by viewModels<MovieViewModel> {
         MovieViewModelFactory(
             MovieRepositoryImpl(
-                RemoteMovieDataSource(RetrofitClient.webService)
+                RemoteMovieDataSource(RetrofitClient.webService),
+                LocalMovieDataSource(AppDatabase.getDatabase(requireContext()).movieDao())
             )
         )
     }

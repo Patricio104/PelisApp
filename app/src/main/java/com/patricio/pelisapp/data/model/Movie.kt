@@ -3,6 +3,7 @@ package com.patricio.pelisapp.data.model
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+import android.os.Parcelable
 
 data class Movie(
     val id: Int = -1,
@@ -23,6 +24,7 @@ data class Movie(
 
 data class MovieList(val results: List<Movie> = listOf())
 
+//Room
 @Entity
 data class MovieEntity(
     @PrimaryKey
@@ -76,6 +78,22 @@ fun MovieEntity.toMovie (): Movie = Movie(
     this.title,
     this.video,
     this.vote_average,
+    this.vote_count
+)
+
+fun Movie.toMovieEntity (movieType: String): MovieEntity = MovieEntity(
+    this.id,
+    this.adult,
+    this.backdrop_path,
+    this.original_title,
+    this.original_languaje,
+    this.overview,
+    this.popularity,
+    this.poster_path,
+    this.release_date,
+    this.title,
+    this.video,
+    this.vote_average,
     this.vote_count,
-    this.movie_type
+    movie_type = movieType
 )
